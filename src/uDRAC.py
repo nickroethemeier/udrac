@@ -75,7 +75,7 @@ def connC6100(host):
 		cmd = '"'+scrpath+'/lin-jre/bin/java" -cp "'+scrpath+'/c6100/JViewer.jar" -Djava.library.path="'+scrpath+'/c6100/lib" com.ami.kvm.jviewer.JViewer '+ JNLPhost + " " + JNLPport + " " + JNLPtoken
 		os.system(cmd + " &")
 	elif opsys == "Darwin":
-		cmd = scrpath+'/osx-jre/bin/java -cp "'+scrpath+'/c6100/JViewer.jar" com.ami.kvm.jviewer.JViewer '+ JNLPhost + " " + JNLPport + " " + JNLPtoken
+		cmd = '"'+scrpath+'/osx-jre/bin/java" -cp "'+scrpath+'/c6100/JViewer.jar" com.ami.kvm.jviewer.JViewer '+ JNLPhost + " " + JNLPport + " " + JNLPtoken
 		os.system(cmd + " &")
 	
 	if debugmsg == 1:
