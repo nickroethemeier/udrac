@@ -1,0 +1,10 @@
+src/win-jre/* linguist-vendored
+src/osx-jre/* linguist-vendored
+src/lin-jre/* linguist-vendored
+src/c6100/* linguist-vendored
+src/c6220/* linguist-vendored
+src/idrac/* linguist-vendored
+src/idrac-blade/* linguist-vendored
+*.spec linguist-vendored
+*.bat linguist-vendored
+*.sh linguist-vendored
