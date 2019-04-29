@@ -6,7 +6,6 @@ import urllib.parse
 from urllib.error import URLError, HTTPError
 import os
 import ssl
-import json
 import re
 from subprocess import Popen
 import platform
@@ -71,16 +70,17 @@ def connC6100(host):
 	scrpath = os.path.abspath(os.path.dirname(sys.argv[0]))
 	if opsys == "Windows":
 		cmd = '"'+scrpath+'\\win-jre\\bin\\java.exe" -cp "'+scrpath+'\\c6100\\JViewer.jar" -Djava.library.path="'+scrpath+'\\c6100\\lib" com.ami.kvm.jviewer.JViewer '+ JNLPhost + " " + JNLPport + " " + JNLPtoken
+		Popen(cmd)
 	elif opsys == "Linux":
 		cmd = '"'+scrpath+'/lin-jre/bin/java" -cp "'+scrpath+'/c6100/JViewer.jar" -Djava.library.path="'+scrpath+'/c6100/lib" com.ami.kvm.jviewer.JViewer '+ JNLPhost + " " + JNLPport + " " + JNLPtoken
+		os.system(cmd + " &")
 	elif opsys == "Darwin":
-		cmd = '"'+scrpath+'/osx-jre/bin/java" -cp "'+scrpath+'/c6100/JViewer.jar" com.ami.kvm.jviewer.JViewer '+ JNLPhost + " " + JNLPport + " " + JNLPtoken
+		cmd = scrpath+'/osx-jre/bin/java -cp "'+scrpath+'/c6100/JViewer.jar" com.ami.kvm.jviewer.JViewer '+ JNLPhost + " " + JNLPport + " " + JNLPtoken
+		os.system(cmd + " &")
 	
 	if debugmsg == 1:
 		print (cmd)
 		showinfo("CMD", cmd)
-	
-	Popen(cmd)
 	return
 
 
@@ -92,16 +92,17 @@ def connC6220(host):
 	scrpath = os.path.abspath(os.path.dirname(sys.argv[0]))
 	if opsys == "Windows":
 		cmd = '"'+scrpath+'\\win-jre\\bin\\java.exe" -cp "'+scrpath+'\\c6220\\avctKVM.jar" -Djava.library.path="'+scrpath+'\\c6220\\lib" com.avocent.kvm.client.Main C6220 ip='+host.addr+' platform=ast2300 vmprivilege=true user='+host.username+' passwd='+host.password+' kmport=7578 vport=7578 apcp=1 version=2 platform=ASPEED color=0 softkeys=1 statusbar=ip,un,fr,bw,kp,led power=1'
+		Popen(cmd)
 	elif opsys == "Linux":
 		cmd = '"'+scrpath+'/lin-jre/bin/java" -cp "'+scrpath+'/c6220/avctKVM.jar" -Djava.library.path="'+scrpath+'/c6220/lib" com.avocent.kvm.client.Main C6220 ip='+host.addr+' platform=ast2300 vmprivilege=true user='+host.username+' passwd='+host.password+' kmport=7578 vport=7578 apcp=1 version=2 platform=ASPEED color=0 softkeys=1 statusbar=ip,un,fr,bw,kp,led power=1'
+		os.system(cmd + " &")
 	elif opsys == "Darwin":
 		cmd = '"'+scrpath+'/osx-jre/bin/java" -cp "'+scrpath+'/c6220/avctKVM.jar" -Djava.library.path="'+scrpath+'/c6220/lib" com.avocent.kvm.client.Main C6220 ip='+host.addr+' platform=ast2300 vmprivilege=true user='+host.username+' passwd='+host.password+' kmport=7578 vport=7578 apcp=1 version=2 platform=ASPEED color=0 softkeys=1 statusbar=ip,un,fr,bw,kp,led power=1'
+		os.system(cmd + " &")
 	
 	if debugmsg == 1:
 		print (cmd)
 		showinfo("CMD", cmd)
-	
-	Popen(cmd)
 	return
 
 
@@ -112,16 +113,17 @@ def conniDRAC6(host):
 	scrpath = os.path.abspath(os.path.dirname(sys.argv[0]))
 	if opsys == "Windows":
 		cmd = '"'+scrpath+'\\win-jre\\bin\\java.exe" -cp "'+scrpath+'\\idrac6\\avctKVM.jar" -Djava.library.path="'+scrpath+'\\idrac6\\lib" com.avocent.idrac.kvm.Main ip='+host.addr+' kmport=5900 vport=5900 user='+host.username+' passwd='+host.password+' apcp=1 version=2 vmprivilege=true '
+		Popen(cmd)
 	elif opsys == "Linux":
 		cmd = '"'+scrpath+'/lin-jre/bin/java" -cp "'+scrpath+'/idrac6/avctKVM.jar" -Djava.library.path="'+scrpath+'/idrac6/lib" com.avocent.idrac.kvm.Main ip='+host.addr+' kmport=5900 vport=5900 user='+host.username+' passwd='+host.password+' apcp=1 version=2 vmprivilege=true '
+		os.system(cmd + " &")
 	elif opsys == "Darwin":
 		cmd = '"'+scrpath+'/osx-jre/bin/java" -cp "'+scrpath+'/idrac6/avctKVM.jar" -Djava.library.path="'+scrpath+'/idrac6/lib" com.avocent.idrac.kvm.Main ip='+host.addr+' kmport=5900 vport=5900 user='+host.username+' passwd='+host.password+' apcp=1 version=2 vmprivilege=true '
+		os.system(cmd + " &")
 	
 	if debugmsg == 1:
 		print (cmd)
 		showinfo("CMD", cmd)
-
-	Popen(cmd)
 	return
 	
 
@@ -164,17 +166,18 @@ def conniDRAC6_Blade(host):
 	scrpath = os.path.abspath(os.path.dirname(sys.argv[0]))
 	if opsys == "Windows":
 		cmd = '"'+scrpath+'\\win-jre\\bin\\java.exe" -cp "'+scrpath+'\\idrac6-blade\\JViewer.jar" -Djava.library.path="'+scrpath+'\\idrac6-blade\\lib" com.ami.kvm.jviewer.JViewer '+host.addr+" "+fullArgs
+		Popen(cmd)
 	elif opsys == "Linux":
 		cmd = '"'+scrpath+'/lin-jre/bin/java" -cp "'+scrpath+'/idrac6-blade/JViewer.jar" -Djava.library.path="'+scrpath+'/idrac6-blade/lib" com.ami.kvm.jviewer.JViewer '+host.addr+" "+fullArgs
+		os.system(cmd + " &")
 	elif opsys == "Darwin":
-		showerror("Dell iDRAC6 for Blades SUCK", "They don't provide the correct OSX Native Libraries (In particular the Floppy Library WTF?), and for whatever reason, the keyboard doesn't work without it.   I'll Continue to connect without it, but you won't be able to type. Sorry")
+		showinfo("Dell iDRAC6 for Blades SUCK", "They don't provide the correct OSX Native Libraries (In particular the Floppy Library WTF?), and for whatever reason, the keyboard doesn't work without it.   I'll Continue to connect without it, but you won't be able to type. Sorry.    In the event you CAN find the libraries, put them in idrac6-blade/lib/")
 		cmd = '"'+scrpath+'/osx-jre/bin/java" -cp "'+scrpath+'/idrac6-blade/JViewer.jar" -Djava.library.path="'+scrpath+'/idrac6-blade/lib" com.ami.kvm.jviewer.JViewer '+host.addr+" "+fullArgs
-	
+		os.system(cmd + " &")
+		
 	if debugmsg == 1:
 		print (cmd)
 		showinfo("CMD", cmd)
-	
-	Popen(cmd)
 	return
 
 
