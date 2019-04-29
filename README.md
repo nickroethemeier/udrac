@@ -8,8 +8,8 @@ Dell DRAC Micro Launcher UI
 * Dell C6220 nodes
 
 # Dependencies
-Python 3.7 or greater
-PyInstaller
+* Python 3.7 or greater
+* PyInstaller
 
 # Some Important Notes
 This GUI launcher is based on "reverse engineered" interactions with the out-of-band management card. 
