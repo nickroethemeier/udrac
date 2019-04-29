@@ -14,7 +14,7 @@ import platform
 hosttypes = ["C6100", "C6220", "iDRAC6", "iDRAC6-Blade"]
 
 ### Default Values
-defaultHost = "10.60.0."
+defaultHost = ""
 defaultType = "C6100"
 defaultUser = "root"
 defaultPass = ""
