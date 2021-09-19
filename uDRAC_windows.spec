@@ -3,7 +3,7 @@
 block_cipher = None
 
 a = Analysis(['src\\uDRAC.py'],
-             pathex=['X:\\Dropbox\\uDrac\\src'],
+             pathex=['src'],
              binaries=[],
              datas=[('src\\win-jre', 'win-jre') , ('src\\c6100','c6100'), ('src\\c6220','c6220'), ('src\\idrac6','idrac6'),  ('src\\idrac6-blade', 'idrac6-blade')],
              hiddenimports=[],
@@ -25,7 +25,7 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          console=False )
+          console=True )
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
